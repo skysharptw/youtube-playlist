@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Playlist Player</title>
+</head>
+
+<body>
+    <div id="youtube-player"></div>
+
+    <script>
+        var player;
+        var playlistId = 'PLFE8SA8GSdoOj7Pju-9Pm4ea6SJLAR0al';
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                height: '360',
+                width: '640',
+                playerVars: {
+                    'playlist': playlistId,
+                    'autoplay': 1,
+                    'loop': 1,
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+                // 影片播放結束時，播放下一個影片
+                event.target.nextVideo();
+            }
+        }
+    </script>
+
+    <!-- 引入 YouTube API 腳本 -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+</body>
+
+</html>
