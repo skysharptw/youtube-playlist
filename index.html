@@ -8,42 +8,15 @@
 </head>
 
 <body>
-    <div id="youtube-player"></div>
+    <!-- 放置 YouTube 播放器的容器 -->
+    <div id="youtube-player">
+        <iframe width="560" height="315"
+            src="https://www.youtube.com/embed/videoseries?si=uCULr-y4X_tCYlY1&amp;list=PLFE8SA8GSdoOj7Pju-9Pm4ea6SJLAR0al&loop=1"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+    </div>
 
-    <script>
-        var player;
-        var playlistId = 'PLFE8SA8GSdoOj7Pju-9Pm4ea6SJLAR0al';
-
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('youtube-player', {
-                height: '360',
-                width: '640',
-                playerVars: {
-                    'playlist': playlistId,
-                    'autoplay': 1,
-                    'loop': 1,
-                },
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        }
-
-        function onPlayerReady(event) {
-            event.target.playVideo();
-        }
-
-        function onPlayerStateChange(event) {
-            if (event.data == YT.PlayerState.ENDED) {
-                // 影片播放結束時，播放下一個影片
-                event.target.nextVideo();
-            }
-        }
-    </script>
-
-    <!-- 引入 YouTube API 腳本 -->
-    <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 
 </html>
